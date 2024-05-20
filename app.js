@@ -7,7 +7,9 @@ const authController = require('./controllers/authcontroller');
 const studentController = require('./controllers/studentcontroller');
 const { authorizeToken } = require('./middlewares/authmiddlewares');
 const methodOverride=require('method-override')
+const flash = require('connect-flash');
 app.use(cookieParser());
+app.use(flash());
 
 dbConfig.connect();
 
@@ -21,10 +23,10 @@ app.get('/login', authController.getLogin);
 app.post('/login', authController.postLogin);
 app.get('/register', authController.getRegister);
 app.post('/register', authController.postRegister);
-app.get('/students', studentController.getNewStudentForm);
+app.get('/students',authorizeToken, studentController.getNewStudentForm);
 app.get('/students/new', authorizeToken,studentController.getStudents);
 app.post('/students/new', studentController.postStudent);
-app.get('/students/:id/edit', studentController.getEditStudent);
+app.get('/students/:id/edit',authorizeToken, studentController.getEditStudent);
 app.put('/students/:id', studentController.updateStudent);
 
 app.get('/home', (req, res) => {

@@ -1,4 +1,5 @@
 const Student = require('../models/student');
+const { authorizeToken } = require('../middlewares/authmiddlewares');
 
 exports.getNewStudentForm = async(req, res) => {
     const students = await Student.find();

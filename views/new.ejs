@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .href {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+        .href:hover {
+            background-color: #0056b3;
+        }
+        .add-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .add-link a {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .add-link a:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h1>Students</h1>
+    <ul>
+        <% students.forEach(student => { %>
+            <li>Name: <%= student.name %>, Roll No: <%= student.rollno %>, Course: <%= student.course %></li>
+            <a href="/students/<%= student._id %>/edit" class="href">Edit/Update</a>
+        <% }); %>
+    </ul>
+    <div class="add-link">
+        <a href="/students/new">Add New Student</a>
+    </div>
+</body>
+</html>

@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const session=require('express-session')
 const dbConfig = require('./config/db');
 const authController = require('./controllers/authcontroller');
 const studentController = require('./controllers/studentcontroller');
@@ -9,6 +10,11 @@ const { authorizeToken } = require('./middlewares/authmiddlewares');
 const methodOverride=require('method-override')
 const flash = require('connect-flash');
 app.use(cookieParser());
+app.use(session({
+    secret: '123', // Secret key for session encryption (should be stored in environment variables)
+    resave: false,
+    saveUninitialized: false
+}));
 app.use(flash());
 
 dbConfig.connect();
